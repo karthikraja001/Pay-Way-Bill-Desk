@@ -106,23 +106,23 @@ Public Class Form1
 
     Public Sub msgRec(ByVal balSenAcc As String, ByVal balSender As String, ByVal balSenPh As String, ByVal balRecAcc As String, ByVal amt As String)
 
-        Const accountSid = "AC952c8e382df0ac700d89884fce76f5ce"
-        Const authToken = "996d19a71edf9091974f5c77d0ebb3b6"
+        Const accountSid = "<YOUR_TWILIO_ACCOUNT_SID>"
+        Const authToken = "<YOUR_TWILIO_API_KEY>"
         TwilioClient.Init(accountSid, authToken)
         Dim toNumber = New PhoneNumber(balSenPh)
         Dim message = MessageResource.Create(
-                    toNumber, from:=New PhoneNumber("+13853372859"),
+                    toNumber, from:=New PhoneNumber("<YOUR_TWILIO_PHONE_NUMBER>"),
                     body:="Reciever - Your Account Number" + balSenAcc.Substring(0, 3) + "XXX" + balSenAcc.Substring(8, 2) + "Has Been Credited With Rs " + amt + " To " + balRecAcc + " On " + System.DateTime.Now.ToString("MMM/dd/yyyy HH:mm:ss") + vbNewLine + "Your Account Balance Is Rs " + balSender + "")
     End Sub
 
     Public Sub msgSend(ByVal balRecAcc As String, ByVal balReciever As String, ByVal balRecPh As String, ByVal balSenAcc As String, ByVal amt As String)
 
-        Const accountSid = "AC952c8e382df0ac700d89884fce76f5ce"
-        Const authToken = "996d19a71edf9091974f5c77d0ebb3b6"
+    Const accountSid = "<YOUR_TWILIO_ACCOUNT_SID>"
+    Const authToken = "<YOUR_TWILIO_API_KEY>"
         TwilioClient.Init(accountSid, authToken)
         Dim toNumber = New PhoneNumber(balRecPh)
         Dim message = MessageResource.Create(
-                    toNumber, from:=New PhoneNumber("+13853372859"),
+        toNumber, from:=New PhoneNumber("<YOUR_TWILIO_PHONE_NUMBER>"),
                     body:="Sender - Your Account Number" + balRecAcc.Substring(0, 3) + "XXX" + balRecAcc.Substring(8, 2) + "Has Been Debited With Rs " + amt + " To " + balSenAcc + " On " + System.DateTime.Now.ToString("MMM/dd/yyyy HH:mm:ss") + vbNewLine + "Your Account Balance Is Rs " + balReciever + "")
     End Sub
 
@@ -157,12 +157,12 @@ Public Class Form1
                 genOTP()
                 otpPage.otpCode = otp
                 Dim senderPH As String = fetchS("ph_no")
-                Const accountSid = "AC952c8e382df0ac700d89884fce76f5ce"
-                Const authToken = "996d19a71edf9091974f5c77d0ebb3b6"
+                Const accountSid = "<YOUR_TWILIO_ACCOUNT_SID>"
+                Const authToken = "<YOUR_TWILIO_API_KEY>"
                 TwilioClient.Init(accountSid, authToken)
                 Dim toNumber = New PhoneNumber(senderPH)
                 Dim message = MessageResource.Create(
-                    toNumber, from:=New PhoneNumber("+13853372859"),
+                    toNumber, from:=New PhoneNumber("<YOUR_TWILIO_PHONE_NUMBER>"),
                     body:="Your PAY-WAY Bill Desk OTP is " + otp)
                 Console.WriteLine(message.Sid)
 
